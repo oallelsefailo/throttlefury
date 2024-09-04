@@ -1,0 +1,25 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Environment files
+.env
+
+# Firebase Admin SDK credentials (backend)
+config/firebaseServiceAccount.json
+
+# Build directory (for React frontend)
+build/
+dist/
+
+# Mac specific
+.DS_Store
+
+# Windows specific
+Thumbs.db
