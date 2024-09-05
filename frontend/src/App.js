@@ -7,9 +7,11 @@ import {
   faTiktok,
   faDiscord,
 } from "@fortawesome/free-brands-svg-icons";
+import PayPalButton from "./PayPalButton";
 
 function App() {
   const [items, setItems] = useState([]);
+  const [contribution, setContribution] = useState(0); // State for contribution amount
 
   // Fetching data from Firestore
   useEffect(() => {
@@ -24,6 +26,37 @@ function App() {
 
     return () => unsubscribe(); // Cleanup subscription
   }, []);
+
+  // Handle Input Change (Ensure whole number input)
+  const handleContributionChange = (e) => {
+    const value = e.target.value;
+
+    if (value === "") {
+      setContribution(0);
+    } else {
+      if (/^\d+$/.test(value)) {
+        setContribution(parseInt(value, 10));
+      }
+    }
+  };
+
+  // Prevent periods, special characters, and other invalid characters in input
+  const handleKeyDown = (e) => {
+    const allowedKeys = [
+      "Backspace",
+      "ArrowLeft",
+      "ArrowRight",
+      "Delete",
+      "Tab",
+    ];
+
+    if (allowedKeys.includes(e.key) || /^[0-9]$/.test(e.key)) {
+      return;
+    }
+
+    // Prevent any other key
+    e.preventDefault();
+  };
 
   // Return JSX
   return (
@@ -75,9 +108,35 @@ function App() {
                   <div
                     className="progress-bar"
                     style={{ width: `${(item.current / item.goal) * 100}%` }}
-                  ></div>
+                  >
+                    <span className="progress-text">
+                      {`${Math.round((item.current / item.goal) * 100)}%`}
+                    </span>
+                  </div>
                 </div>
-                <button className="contribute-btn">Contribute</button>
+
+                {/* New flex container for input and buttons */}
+                <div className="input-and-buttons">
+                  <div className="input-wrapper">
+                    <span className="input-prefix">$</span>
+                    <input
+                      type="number"
+                      className="contribution-input"
+                      value={contribution === 0 ? "" : contribution}
+                      onChange={handleContributionChange}
+                      onKeyDown={handleKeyDown}
+                      placeholder="Enter amount"
+                      min="0"
+                      step="1"
+                    />
+                  </div>
+
+                  {/* PayPal button next to input field */}
+                  <PayPalButton
+                    contributionAmount={contribution}
+                    itemId={item.id}
+                  />
+                </div>
               </div>
             </div>
           ))

@@ -1,107 +1,213 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
 .main-header {
-    display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    padding: 20px;
-    background-color: #333;
-    color: white;
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+  position: relative;
 }
 
 .logo {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); 
-    text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .social-icons {
-    margin-left: auto; 
+  margin-left: auto;
 }
 
 .social-icons a {
-    margin-left: 18px;
+  margin-left: 18px;
 }
 
 .social-icons img {
-    width: 30px;
-    margin-left: 10px;
-    transition: transform 0.2s; 
+  width: 30px;
+  margin-left: 10px;
+  transition: transform 0.2s;
 }
 
 @keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
 }
 
 .social-icons a:hover svg {
-    animation: shake 0.5s;
-    animation-iteration-count: 1;
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
 }
 
 .contribution-section {
-    padding: 20px;
+  padding: 20px;
 }
 
 .item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .item img {
-    width: 150px;
-    height: auto; 
-    margin-right: 20px; 
+  width: 150px;
+  height: auto;
+  margin-right: 20px;
 }
 
 .details {
-    flex: 1;
+  flex: 1;
 }
 
 .progress-bar-container {
-    background-color: #e0e0e0;
-    height: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-bottom: 10px;
-    width: 70%;  
+  background-color: #e0e0e0;
+  height: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  width: 70%;
 }
 
 .progress-bar {
-    height: 100%;
-    background-color: #4caf50;
-    width: 0%;  
-    transition: width 0.3s ease;  
+  position: relative;
+  height: 100%;
+  background-color: #4caf50;
+  width: 0%;
+  transition: width 0.3s ease;
 }
 
-
-.contribute-btn {
-    padding: 10px 20px;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+.progress-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  top: 50%; 
+  transform: translateY(-50%); 
 }
 
-.contribute-btn:hover {
-    background-color: #45a049;
+/* Input wrapper to contain the $ symbol and input */
+.input-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.input-prefix {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #555;
+}
+
+/* Contribution input field styling */
+.contribution-input {
+  padding: 10px;
+  padding-left: 25px;
+  width: 85px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.contribution-input:focus {
+  border-color: #4caf50;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  margin: 0;
+}
+
+/* Flexbox for input and buttons */
+.input-and-buttons {
+  display: flex;
+  align-items: center;
+}
+
+/* Prevents the buttons from being too wide and displays them inline */
+.paypal-buttons {
+  display: flex; /* Ensure PayPal and Venmo buttons are side by side */
+}
+
+.paypal-buttons iframe {
+  margin-right: 10px; /* Adds space between the buttons */
+  width: auto;
+  max-width: 150px; /* You can adjust the max-width as needed */
+}
+
+.input-wrapper {
+  margin-right: 10px; /* Space between input and buttons */
+}
+
+.contribution-input {
+  padding-left: 25px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  width: 120px;
+  outline: none;
+}
+
+.input-prefix {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: #555;
+}
+
+.input-wrapper {
+  position: relative;
 }
