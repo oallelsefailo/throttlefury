@@ -12,7 +12,6 @@ import PayPalButton from "./PayPalButton";
 function App() {
   const [items, setItems] = useState([]);
   const [contributions, setContributions] = useState({});
-  const [finalizedContributions, setFinalizedContributions] = useState({});
 
   // Fetch items from Firestore
   useEffect(() => {
@@ -32,39 +31,11 @@ function App() {
   const handleContributionChange = (itemId, value) => {
     // Remove any non-digit characters
     const sanitizedValue = value.replace(/[^0-9]/g, "");
+    const amount = sanitizedValue === "" ? 0 : parseFloat(sanitizedValue);
     setContributions((prev) => ({
       ...prev,
-      [itemId]: sanitizedValue === "" ? 0 : parseFloat(sanitizedValue),
+      [itemId]: amount,
     }));
-  };
-
-  // Automatically finalize contribution after user stops typing
-  useEffect(() => {
-    const delayDebounce = setTimeout(() => {
-      setFinalizedContributions(contributions);
-    }, 500); // Delay of 500ms before finalizing
-
-    return () => clearTimeout(delayDebounce); // Cleanup on every new keystroke
-  }, [contributions]);
-
-  // Handle key press and only allow numeric input
-  const handleKeyDown = (e) => {
-    const allowedKeys = [
-      "Backspace",
-      "ArrowLeft",
-      "ArrowRight",
-      "Delete",
-      "Tab",
-    ];
-
-    if (allowedKeys.includes(e.key)) {
-      return; // Allow backspace, arrow keys, delete, and tab
-    }
-
-    // Prevent any key that is not a number or not in allowedKeys
-    if (!/^\d$/.test(e.key)) {
-      e.preventDefault();
-    }
   };
 
   return (
@@ -143,16 +114,17 @@ function App() {
                         onChange={(e) =>
                           handleContributionChange(item.id, e.target.value)
                         }
-                        onKeyDown={handleKeyDown} // Block non-digit characters
                         placeholder="Enter amount"
                       />
                     </div>
 
                     {/* PayPal button */}
-                    <PayPalButton
-                      contributionAmount={finalizedContributions[item.id] || 0}
-                      itemId={item.id}
-                    />
+                    {contributions[item.id] > 0 && (
+                      <PayPalButton
+                        contributionAmount={contributions[item.id]}
+                        itemId={item.id}
+                      />
+                    )}
                   </div>
                 </div>
               </div>

@@ -4,25 +4,20 @@ import { db } from "./firebaseConfig";
 
 function PayPalButton({ contributionAmount, itemId }) {
   const paypalContainerRef = useRef(null);
-  const initialized = useRef(false); // Track if buttons are already rendered
+  const initialized = useRef(false);
 
-  // Memoize the renderPayPalButtons function
   const renderPayPalButtons = useCallback(() => {
-    if (!window.paypal) {
-      console.error("PayPal SDK not loaded.");
-      return;
+    if (!window.paypal || !paypalContainerRef.current) {
+      return; // Prevent rendering if PayPal SDK isn't loaded or container is not available
     }
 
     // Clear previous buttons if they exist
-    if (paypalContainerRef.current) {
-      paypalContainerRef.current.innerHTML = "";
-    }
+    paypalContainerRef.current.innerHTML = "";
 
     window.paypal
       .Buttons({
         createOrder: function (data, actions) {
           const validAmount = parseFloat(contributionAmount);
-
           if (isNaN(validAmount) || validAmount <= 0) {
             alert("Please enter a valid contribution greater than $0");
             return;
@@ -32,7 +27,7 @@ function PayPalButton({ contributionAmount, itemId }) {
             purchase_units: [
               {
                 amount: {
-                  value: validAmount.toFixed(2), // Send the correct amount to PayPal
+                  value: validAmount.toFixed(2),
                 },
               },
             ],
@@ -48,7 +43,10 @@ function PayPalButton({ contributionAmount, itemId }) {
           });
         },
       })
-      .render(paypalContainerRef.current);
+      .render(paypalContainerRef.current)
+      .catch((error) => {
+        console.error("Error rendering PayPal buttons:", error);
+      });
   }, [contributionAmount, itemId]);
 
   useEffect(() => {
@@ -57,28 +55,30 @@ function PayPalButton({ contributionAmount, itemId }) {
       script.src =
         "https://www.paypal.com/sdk/js?client-id=AQD9MrjSwon4T7-ywRak88FPWofkAu0quLZoM3SjKXqMqp91GMbeJOYOkv8kzb0PbyAe8iJClyeXJOjV&enable-funding=venmo&disable-funding=credit,card,paylater";
       script.onload = () => {
-        if (window.paypal) {
-          renderPayPalButtons();
-        } else {
-          console.error("PayPal SDK failed to load.");
-        }
+        initialized.current = true; // Mark as initialized
+        renderPayPalButtons(); // Render buttons after SDK loads
       };
       script.onerror = () => console.error("Error loading PayPal SDK script.");
       document.body.appendChild(script);
-
-      // Cleanup the script when the component is unmounted
-      return () => {
-        document.body.removeChild(script);
-      };
     };
 
     if (!initialized.current) {
       loadPayPalScript();
-      initialized.current = true;
-    } else {
-      renderPayPalButtons(); // Ensure the buttons are rendered if already initialized
     }
-  }, [renderPayPalButtons]); // Add renderPayPalButtons to the dependency array
+
+    return () => {
+      // Cleanup function to avoid memory leaks
+      if (paypalContainerRef.current) {
+        paypalContainerRef.current.innerHTML = ""; // Clear PayPal buttons
+      }
+    };
+  }, [renderPayPalButtons]); // Add renderPayPalButtons to the dependencies
+
+  useEffect(() => {
+    if (initialized.current && contributionAmount > 0) {
+      renderPayPalButtons(); // Render buttons only if contributionAmount is valid
+    }
+  }, [contributionAmount, renderPayPalButtons]); // Include renderPayPalButtons here as well
 
   return <div ref={paypalContainerRef} id="paypal-button-container"></div>;
 }
