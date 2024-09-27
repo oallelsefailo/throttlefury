@@ -177,17 +177,17 @@ input[type="number"] {
 
 /* Prevents the buttons from being too wide and displays them inline */
 .paypal-buttons {
-  display: flex; /* Ensure PayPal and Venmo buttons are side by side */
+  display: flex; 
 }
 
 .paypal-buttons iframe {
-  margin-right: 10px; /* Adds space between the buttons */
+  margin-right: 10px; 
   width: auto;
-  max-width: 150px; /* You can adjust the max-width as needed */
+  max-width: 150px; 
 }
 
 .input-wrapper {
-  margin-right: 10px; /* Space between input and buttons */
+  margin-right: 10px; 
 }
 
 .contribution-input {
@@ -211,3 +211,39 @@ input[type="number"] {
 .input-wrapper {
   position: relative;
 }
+
+/* PHOTO GALLERY */
+
+.photo-gallery {
+  margin: 20px 0; 
+  padding: 0 20px; 
+}
+
+.gallery-container {
+  display: flex;
+  justify-content: space-between; 
+  flex-wrap: nowrap; 
+}
+
+.gallery-container img {
+  max-width: calc((100% / 6) - 10px); 
+  height: auto; 
+  margin: 0 5px; 
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .gallery-container img {
+    max-width: calc((100% / 3) - 10px); /* 3 images in a row on small screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-container img {
+    max-width: calc((100% / 2) - 10px); /* 2 images in a row on extra small screens */
+  }
+}
+
+
+
+

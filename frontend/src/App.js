@@ -11,7 +11,7 @@ import PayPalButton from "./PayPalButton";
 
 function App() {
   const [items, setItems] = useState([]);
-  const [contributions, setContributions] = useState({});
+  const [contributions, setContributions] = useState([]);
 
   // Fetch items from Firestore
   useEffect(() => {
@@ -134,6 +134,19 @@ function App() {
           <p>Loading data or no items found...</p>
         )}
       </section>
+
+      {/* Photo Gallery Section */}
+      <div className="photo-gallery">
+        <h2>Crash Pictures</h2>
+        <div className="gallery-container">
+          <img src="/images/image1.jpg" alt="Rear seat/frame" />
+          <img src="/images/image2.jpg" alt="exhaust and pegs" />
+          <img src="/images/image3.jpg" alt="main damage on fairings" />
+          <img src="/images/image4.jpg" alt ="bent wheel" />
+          <img src="/images/image5.jpg" alt="gas tank" />
+          <img src="/images/image6.jpg" alt="helmet damage" />
+        </div>
+      </div>
     </div>
   );
 }
