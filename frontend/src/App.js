@@ -142,9 +142,36 @@ function App() {
           <img src="/images/image1.jpg" alt="Rear seat/frame" />
           <img src="/images/image2.jpg" alt="exhaust and pegs" />
           <img src="/images/image3.jpg" alt="main damage on fairings" />
-          <img src="/images/image4.jpg" alt ="bent wheel" />
+          <img src="/images/image4.jpg" alt="bent wheel" />
           <img src="/images/image5.jpg" alt="gas tank" />
           <img src="/images/image6.jpg" alt="helmet damage" />
+        </div>
+      </div>
+
+      <div className="photo-gallery dress-gallery">
+        <h2>Win This Handmade Dress!</h2>
+        <p>
+          If you'd like to be put into a raffle to win a handmade dress to your
+          measurements, please DM me on IG/Discord the email you used to
+          contribute and I will add your name!
+          <br /> {/* Corrected br tag */}
+          Dress made by:{" "}
+          <a
+            href="https://www.instagram.com/knottyoddie/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span
+              style={{ color: "red", fontWeight: "bold", fontSize: "18px" }}
+            >
+              @knottyoddie
+            </span>
+          </a>
+        </p>
+        <div className="dress-gallery-container">
+          <img src="/images/dress1.jpg" alt="Dress 1" />
+          <img src="/images/dress2.jpg" alt="Dress 2" />
+          <img src="/images/dress3.jpg" alt="Dress 3" />
         </div>
       </div>
     </div>

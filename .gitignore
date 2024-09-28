@@ -23,3 +23,9 @@ dist/
 
 # Windows specific
 Thumbs.db
+
+# Ignore Firebase CLI settings
+.firebase/
+
+# Ignore VSCode settings
+.vscode/
