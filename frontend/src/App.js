@@ -187,10 +187,17 @@ function App() {
       <div className="photo-gallery dress-gallery">
         <h2>Win This Handmade Dress!</h2>
         <p>
-          If you'd like to be put into a raffle to win a handmade dress to your
-          measurements, please DM me on Instagram or Discord with the email you used to
-          contribute and I will add your name!
+          If you contribute $20 or more, you'll be automatically entered into a
+          raffle to win a custom-made crocheted dress tailored to your
+          measurements.
           <br /> {/* Corrected br tag */}
+          <small style={{ fontSize: "14px" }}>
+            Note: The raffle will be held if total contributions reach $1,500,
+            regardless of the overall $5,000 goal. Each person is limited to one
+            entry. Please ensure a valid email address or Instagram handle is
+            provided for contact.
+          </small>
+          <br />
           Dress made by:{" "}
           <a
             href="https://www.instagram.com/knottyoddie/"
@@ -204,6 +211,7 @@ function App() {
             </span>
           </a>
         </p>
+
         <div className="dress-gallery-container">
           <img src="/images/dress1.jpg" alt="Dress 1" />
           <img src="/images/dress2.jpg" alt="Dress 2" />

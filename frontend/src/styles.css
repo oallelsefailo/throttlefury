@@ -229,7 +229,6 @@ input[type="number"] {
 }
 
 .min-amount-message {
-  margin: 20px 0; 
   padding: 0 20px; 
 }
 
@@ -249,10 +248,11 @@ input[type="number"] {
   font-weight: bold; 
   letter-spacing: 6px;
   display: inline-block;
-  margin-top: 15px; 
+  margin-top: 0px; 
+  margin-bottom: 0px;
   user-select: none; 
   pointer-events: none; 
-  animation: none; 
+  animation: none;
 }
 
 /* Apply rainbow animation to each letter */
