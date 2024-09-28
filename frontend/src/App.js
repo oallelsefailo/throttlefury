@@ -85,6 +85,7 @@ function App() {
                     {item.displayName} - ${item.goal}
                   </h2>
                   <p>Remaining balance: ${remainingBalance}</p>
+
                   <div
                     className="progress-bar-container"
                     style={{ width: "70%" }}
@@ -117,9 +118,8 @@ function App() {
                         placeholder="Enter amount"
                       />
                     </div>
-
                     {/* PayPal button */}
-                    {contributions[item.id] > 0 && (
+                    {contributions[item.id] > 4 && (
                       <PayPalButton
                         contributionAmount={contributions[item.id]}
                         itemId={item.id}
@@ -134,6 +134,42 @@ function App() {
           <p>Loading data or no items found...</p>
         )}
       </section>
+
+      <p className="min-amount-message">
+        Due to PayPal's fees, the minimum amount is{" "}
+        <span style={{ color: "red", fontSize: "17px" }}>$5.00</span>
+        .
+        <br />
+        However, if you'd like to send less or get around their fees, you may
+        Venmo me directly
+        <a
+          href="https://account.venmo.com/u/throttlefury"
+          target="_blank"
+          rel="noreferrer"
+          style={{
+            color: "blue",
+            textDecoration: "underline",
+            marginLeft: "5px",
+            fontSize: "20px",
+          }}
+        >
+          here
+        </a>
+        .
+        <br />
+        <p className="thank-you-message">
+          <span>T</span>
+          <span>H</span>
+          <span>A</span>
+          <span>N</span>
+          <span>K</span>
+          <span> </span>
+          <span>Y</span>
+          <span>O</span>
+          <span>U</span>
+          <span>!</span>
+        </p>
+      </p>
 
       {/* Photo Gallery Section */}
       <div className="photo-gallery">
@@ -152,7 +188,7 @@ function App() {
         <h2>Win This Handmade Dress!</h2>
         <p>
           If you'd like to be put into a raffle to win a handmade dress to your
-          measurements, please DM me on IG/Discord the email you used to
+          measurements, please DM me on Instagram or Discord with the email you used to
           contribute and I will add your name!
           <br /> {/* Corrected br tag */}
           Dress made by:{" "}

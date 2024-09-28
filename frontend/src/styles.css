@@ -228,6 +228,63 @@ input[type="number"] {
   position: relative;
 }
 
+.min-amount-message {
+  margin: 20px 0; 
+  padding: 0 20px; 
+}
+
+.min-amount-message .important {
+  color: red;
+}
+
+.min-amount-message a {
+  color: blue;
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
+/* Styling for the 'thank you' message */
+.thank-you-message {
+  font-size: 40px;
+  font-weight: bold; 
+  letter-spacing: 6px;
+  display: inline-block;
+  margin-top: 15px; 
+  user-select: none; 
+  pointer-events: none; 
+  animation: none; 
+}
+
+/* Apply rainbow animation to each letter */
+.thank-you-message span {
+  display: inline-block; 
+  animation: rainbowColors 3s linear infinite; 
+}
+
+/* Keyframes for the rainbow color cycling effect */
+@keyframes rainbowColors {
+  0% { color: red; }
+  16% { color: orange; }
+  33% { color: yellow; }
+  50% { color: green; }
+  66% { color: blue; }
+  83% { color: indigo; }
+  100% { color: violet; }
+}
+
+/* Delay the animation start for each letter */
+.thank-you-message span:nth-child(1) { animation-delay: 0s; }
+.thank-you-message span:nth-child(2) { animation-delay: 0.2s; }
+.thank-you-message span:nth-child(3) { animation-delay: 0.4s; }
+.thank-you-message span:nth-child(4) { animation-delay: 0.6s; }
+.thank-you-message span:nth-child(5) { animation-delay: 0.8s; }
+.thank-you-message span:nth-child(6) { animation-delay: 1s; }
+.thank-you-message span:nth-child(7) { animation-delay: 1.2s; }
+.thank-you-message span:nth-child(8) { animation-delay: 1.4s; }
+.thank-you-message span:nth-child(9) { animation-delay: 1.6s; }
+.thank-you-message span:nth-child(10) { animation-delay: 1.8s; }
+
+
 /* PHOTO GALLERY */
 
 .photo-gallery {
