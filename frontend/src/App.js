@@ -185,11 +185,11 @@ function App() {
       </div>
 
       <div className="photo-gallery dress-gallery">
-        <h2>Win This Handmade Dress!</h2>
+        <h2>Win A Custom Handmade Dress!</h2>
         <p>
           If you contribute $20 or more, you'll be automatically entered into a
           raffle to win a custom-made crocheted dress tailored to your
-          measurements.
+          measurements & specifications.
           <br /> {/* Corrected br tag */}
           <small style={{ fontSize: "14px" }}>
             Note: The raffle will be held if total contributions reach $1,500,
